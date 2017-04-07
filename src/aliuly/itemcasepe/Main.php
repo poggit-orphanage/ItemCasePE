@@ -31,6 +31,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\server\DataPacketSendEvent;
 use pocketmine\network\mcpe\protocol\ProtocolInfo as ProtocolInfo;
 use pocketmine\utils\TextFormat;
+use pocketmine\entity\Item as ItemEntity;
 
 class Main extends PluginBase implements CommandExecutor,Listener {
   protected $cases = [];
@@ -152,7 +153,9 @@ class Main extends PluginBase implements CommandExecutor,Listener {
         $pk->speedY = 0;
         $pk->speedZ = 0;
         $pk->meta = 0;
-        $pk->metadata = [Entity::DATA_FLAG_NO_AI => [Entity::DATA_TYPE_BYTE, 1]];
+        $pk->putEntityMetadata([
+            Entity::DATA_FLAG_NO_AI => [Entity::DATA_TYPE_INT, 1]
+        ]);
         foreach($players as $pl) {
             $pl->directDataPacket($pk);
         }
