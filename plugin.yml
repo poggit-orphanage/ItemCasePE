@@ -1,7 +1,7 @@
 main: aliuly\itemcasepe\Main
 api: 2.0.0
 load: POSTWORLD
-depend: [ libcommon ]
+depend: ["libcommon"]
 
 name: ItemCasePE
 description: An implementation of Bukkit's ItemCase
