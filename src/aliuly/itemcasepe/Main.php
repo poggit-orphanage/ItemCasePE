@@ -151,15 +151,14 @@ class Main extends PluginBase implements CommandExecutor, Listener {
         $pk->type = ItemEntity::NETWORK_ID;
         $pk->item = $item;
         $pk->x = $pos[0] + 0.5;
-        $pk->y = (int) $pos[1];
+        $pk->y = (float) $pos[1];
         $pk->z = $pos[2] + 0.5;
         $pk->speedX = 0;
         $pk->speedY = 0;
         $pk->speedZ = 0;
         $pk->meta = 0;
-        var_dump($pk);
         $pk->putEntityMetadata([
-            Entity::DATA_FLAG_IMMOBILE => [Entity::DATA_TYPE_INT, 1]
+            Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 1 << Entity::DATA_FLAG_IMMOBILE]
         ]);
         foreach($players as $pl) {
             $pl->directDataPacket($pk);
