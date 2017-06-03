@@ -143,8 +143,8 @@ class Main extends PluginBase implements CommandExecutor,Listener {
         $item = Item::fromString($this->cases[$world][$cid]["item"]);
         $item->setCount($this->cases[$world][$cid]["count"]);
         $pk = new AddItemEntityPacket();
-        $pk->eid = $this->cases[$world][$cid]["eid"];
-        $pk->type = ItemEntity::NETWORK_ID;
+        $pk->putEntityRuntimeId($this->cases[$world][$cid]["eid"]);
+        $pk->putEntityUniqueId(ItemEntity::NETWORK_ID);
         $pk->item = $item;
         $pk->x = $pos[0] + 0.5;
         $pk->y = $pos[1];
@@ -152,10 +152,10 @@ class Main extends PluginBase implements CommandExecutor,Listener {
         $pk->speedX = 0;
         $pk->speedY = 0;
         $pk->speedZ = 0;
-        $pk->meta = 0;
         $pk->putEntityMetadata([
-            Entity::DATA_FLAG_NO_AI => [Entity::DATA_TYPE_INT, 1]
+            Entity::DATA_FLAG_IMMOBILE => [Entity::DATA_TYPE_INT, 1]
         ]);
+        var_dump($pk);
         foreach($players as $pl) {
             $pl->directDataPacket($pk);
         }
