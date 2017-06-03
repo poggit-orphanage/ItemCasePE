@@ -157,9 +157,7 @@ class Main extends PluginBase implements CommandExecutor, Listener {
         $pk->speedY = 0;
         $pk->speedZ = 0;
         $pk->meta = 0;
-        $pk->putEntityMetadata([
-            Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 1 << Entity::DATA_FLAG_IMMOBILE]
-        ]);
+        $pk->metadata = [Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, 1 << Entity::DATA_FLAG_IMMOBILE]];
         foreach($players as $pl) {
             $pl->directDataPacket($pk);
         }
